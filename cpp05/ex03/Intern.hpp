@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 11:39:36 by disantam          #+#    #+#             */
-/*   Updated: 2024/08/02 16:51:49 by disantam         ###   ########.fr       */
+/*   Created: 2024/08/06 13:57:24 by disantam          #+#    #+#             */
+/*   Updated: 2024/08/06 16:08:11 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#ifndef __INTERN_H__
+# define __INTERN_H__
 
-int	main(void) {
+# include <iostream>
+# include <string>
+# include "Form.hpp"
 
-	std::string		str = "HI THIS IS BRAIN";
-	std::string*	stringPTR = &str;
-	std::string&	stringREF = str;
+class Intern
+{
+public:
+	Intern();
+	Intern(const Intern &i);
+	~Intern();
 
-	std::cout << &str << " " << stringPTR << " " << &stringREF << std::endl;
-	std::cout << str << " " << *stringPTR << " " << stringREF << std::endl;
-	return 0;
-}
+	class InvalidNameException: public std::exception
+	{
+	public:
+		virtual const char	*what() const throw();
+	};
+
+	AForm			*makeForm(std::string name, std::string target);
+
+	const Intern	&operator=(const Intern &rhs);
+};
+
+# endif
